@@ -13,14 +13,25 @@
 
   <div class="login-area">
     {% if user %}
-      {{user.name}} (<a class="login-link" href="/blog/logout">logout</a>)
+      {{user.name}} (<a class="login-link" href="/blog/logout">Logout</a>)
                      <br>
-                     <a class="login-link" href="/blog/newpost">newpost</a>
+                     <a class="login-link" href="/blog/newpost">Newpost</a>
     {% else %}
-      <a class="login-link" href="/blog/login">login</a>
-      |
-      <a class="login-link" href="/blog/signup">signup</a>
+      <a class="login-link" href="/blog/login">Login</a>
+      <br>
+      <a class="login-link" href="/blog/signup">Signup</a>
     {% endif %}
+<br>
+<br>
+	<a class="login-link" href="/rot13">Rot13</a>
+<br>
+	<a class="login-link" href="/blog/.json">Json Blog</a>
+<br>
+	<a class="login-link" href="/javascript">Javascript</a>
+
+
+
+
   </div>
 
   <div id="content">
