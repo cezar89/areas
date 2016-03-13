@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>MOVE THE RGB SLIDERS TO CHANGE CIRCLE COLOR</p>
+
+<div class="COLOR"> </div>
+
+
+<div onmousemove="changeColor()">
+  
+
+
+
+<table style="width:30%">
+	<tr>
+		<td>RED:</td>
+		<td>0</td>
+		<td><input type="range" name="RED" id="RED" value="255" min="0" max="255"></td>
+		<td>255</td>
+		<td><svg height="40" width="40"><circle id="circle_red" cx="20" cy="20" r="10" stroke="black" stroke-width="1" fill="red"/></svg></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>GREEN:</td>
+		<td>0</td>
+		<td><input type="range" name="GREEN" id="GREEN" value="0" min="0" max="255"></td>
+		<td>255</td>
+		<td><svg height="40" width="40"><circle id="circle_green" cx="20" cy="20" r="10" stroke="black" stroke-width="1"/></svg></td>
+
+		<td>
+			<svg height="100" width="200">
+  			<circle id="circle_right" cx="60" cy="50" r="40" stroke="black" stroke-width="2" fill="red"/>
+			</svg>
+		</td>
+	</tr>
+
+	<tr>
+		<td>BLUE:</td>
+		<td>0</td>
+		<td><input type="range" name="BLUE" id="BLUE" value="0" min="0" max="255"></td>
+		<td>255</td>
+		<td><svg height="40" width="40"><circle id="circle_blue" cx="20" cy="20" r="10" stroke="black" stroke-width="1"/></svg></td>
+		<td></td>
+	</tr>
+
+	<tr>
+		<td>
+
+		<!--<button onclick="changeColor()">CHANGE COLOR</button> -->
+
+		<script>
+			function changeColor() {
+				//GETTING THE COLOR VALUES: 0-255
+
+				var red = document.getElementById("RED").value;
+				var green = document.getElementById("GREEN").value;
+				var blue = document.getElementById("BLUE").value;
+
+				document.getElementById("circle_right").style.fill = hexColor(red, green, blue);
+
+				// fill the small circles
+				document.getElementById("circle_red").style.fill = hexColor(red, "0", "0");
+				document.getElementById("circle_green").style.fill = hexColor("0", green, "0");
+				document.getElementById("circle_blue").style.fill = hexColor("0", "0", blue);
+
+				//a testing tool
+				//window.alert(hexColor(red, green, blue));
+
+			}
+
+			function hexColor(red, green, blue)
+         		{
+				var final_color;
+				var r=Number(red).toString(16).toUpperCase();
+				var g=Number(green).toString(16).toUpperCase();
+				var b=Number(blue).toString(16).toUpperCase();
+
+				r=two_digit_hex(r);
+				g=two_digit_hex(g);
+				b=two_digit_hex(b);
+
+				final_color ="#" + r + g + b;	//output is a hex string
+				return final_color;
+			}
+
+			function two_digit_hex(color)
+			{
+				if ( color.length <2 )
+				{
+					color="0" + color;
+				}		
+				return color;
+			}
+
+		</script>
+		</td>
+	</tr>
+
+	<tr>
+		<td><button onclick="goBack()">Go Back</button>
+
+		<script>
+			function goBack() {
+    				window.history.back();
+			}
+		</script>
+		</td>
+	</tr>
+
+</table>
+</div>
+
+{% endblock %}

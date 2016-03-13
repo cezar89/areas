@@ -71,9 +71,8 @@ def render_post(response, post):
     response.out.write(post.content)
 
 class MainPage(BlogHandler):
-  def get(self):
-      self.write('Hello, Udacity!')
-
+    def get(self):
+        self.render("MainPage.html")
 
 ##### user stuff
 def make_salt(length = 5):
@@ -172,6 +171,15 @@ class PostPage(BlogHandler):
                     str(cacheupdate-float(cacheupdate_start))+
                     ' seconds '+
                     ' ago')
+
+
+
+
+class Javascript(BlogHandler):
+    def get(self):
+        self.render("JAVASCRIPT EXAMPLE.HTML")
+
+
 
 class NewPost(BlogHandler):
     def get(self):
@@ -362,9 +370,7 @@ class PermalinkJsonHandler(BlogHandler):
 
 
 app = webapp2.WSGIApplication([('/', MainPage),
-                               ('/unit2/rot13', Rot13),
-                               ('/unit2/signup', Unit2Signup),
-                               ('/unit2/welcome', Welcome),
+                               ('/rot13', Rot13),
                                ('/blog/?', BlogFront),
                                ('/blog/.json',BlogJsonHandler),  ###
                                ('/blog/([0-9]+)', PostPage),
@@ -374,6 +380,7 @@ app = webapp2.WSGIApplication([('/', MainPage),
                                ('/blog/login', Login),
                                ('/blog/logout', Logout),
                                ('/blog/welcome', Unit3Welcome),
-                               ('/blog/flush', Flush)
+                               ('/blog/flush', Flush),
+                               ('/javascript', Javascript)
                                ],
-                              debug=True)
+                              debug=False)
