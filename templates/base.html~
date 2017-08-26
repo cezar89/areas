@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/static/main.css" />
+
+  <title>Cezar's Blog</title>
+</head>
+
+<body>
+  <a href="/blog" class="main-title">
+    Cezar's Blog
+  </a>
+
+  <div class="login-area">
+    {% if user %}
+      {{user.name}} (<a class="login-link" href="/blog/logout">Logout</a>)
+                     <br>
+                     <a class="login-link" href="/blog/newpost">Newpost</a>
+    {% else %}
+      <a class="login-link" href="/blog/login">Login</a>
+      <br>
+      <a class="login-link" href="/blog/signup">Signup</a>
+    {% endif %}
+<br>
+<br>
+	<a class="login-link" href="/rot13">Rot13</a>
+<br>
+	<a class="login-link" href="/blog/.json">Json Blog</a>
+<br>
+	<a class="login-link" href="/javascript">Javascript</a>
+
+
+
+
+  </div>
+
+  <div id="content">
+  {% block content %}
+  {% endblock %}
+  </div>
+  <div class="last-cache-update">
+    {{cacheupdate}}
+  </div>
+    
+</body>
+
+</html>
+

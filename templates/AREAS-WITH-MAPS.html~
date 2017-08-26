@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>AREAS</title>
+  </head>
+<form method="post">
+<table>
+  <tr>
+    <th><textarea id="mytext1" name="text1">{{text1}}</textarea></th>
+    <th><textarea id="mytext2" name="text2">{{text2}}</textarea></th>
+    <th><textarea id="mytext3" name="text3">{{text3}}</textarea></th>
+  </tr>
+  <tr>
+    <td><select id="dropdown1">
+    <option value="">None</option>
+    <option value="texta1">textaa1</option>
+    <option value="texta2">textaa2</option>
+    <option value="texta3">textaa3</option>
+    <option value="texta4">textaa4</option>
+    </select></td>
+
+    <td><select id="dropdown2">
+    <option value="">None</option>
+    <option value="textb1">textbb1</option>
+    <option value="textb2">textbb2</option>
+    <option value="textb3">textbb3</option>
+    <option value="textb4">textbb4</option>
+    </select></td>
+
+    <td><select id="dropdown3">
+    <option value="">None</option>
+    <option value="textc1">textcc1</option>
+    <option value="textc2">textcc2</option>
+    <option value="textc3">textcc3</option>
+    <option value="textc4">textcc4</option>
+    </select></td>
+
+  </tr>
+
+<script type="text/javascript">
+    var mytextbox1 = document.getElementById('mytext1');
+    var mydropdown1 = document.getElementById('dropdown1');
+    mydropdown1.onchange = function()
+    {mytextbox1.value = this.value;}
+</script>
+<script type="text/javascript">
+    var mytextbox2 = document.getElementById('mytext2');
+    var mydropdown2 = document.getElementById('dropdown2');
+    mydropdown2.onchange = function()
+    {mytextbox2.value = this.value;}
+</script>
+<script type="text/javascript">
+    var mytextbox3 = document.getElementById('mytext3');
+    var mydropdown3 = document.getElementById('dropdown3');
+    mydropdown3.onchange = function()
+    {mytextbox3.value = this.value;}
+</script>
+
+
+      <input type="submit">
+    </form>
+
+</html>
+
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>AREAS</title>
+  </head>
+<body background="12.png">
+<form method="post">
+<table background="12.png">
+  <tr>
+    <th><textarea id="mytext1" name="text1">{{text1}}</textarea></th>
+    <th><textarea id="mytext2" name="text2">{{text2}}</textarea></th>
+    <th><textarea id="mytext3" name="text3">{{text3}}</textarea></th>
+  </tr>
+  <tr>
+    <th>city</th>
+    <th>type</textarea></th>
+    <th>stars</th>
+  </tr>
+  <tr>
+
+    <td><select id="dropdown1">
+
+    <option value="">None</option>
+    <option value="Tempe">Tempe</option>
+    <option value="Las Vegas">Las Vegas</option>
+    <option value="Toronto">Toronto</option>
+    <option value="Phoenix">Phoenix</option>
+    <option value="Montréal">Montréal</option>
+    <option value="Charlotte">Charlotte</option>
+    <option value="Cleveland">Cleveland</option>
+    <option value="Pittsburgh">Pittsburgh</option>
+    <option value="London">London</option>
+    <option value="Scotland">Scotland</option>
+    </select></td>
+
+    <td><select id="dropdown2">
+
+    <option value="">None</option>
+    <option value="Restaurants">Restaurants</option>
+    <option value="Food">Food</option>
+    <option value="Shopping">Shopping</option>
+    <option value="Bars">Bars</option>
+    <option value="Grocery">Grocery</option>
+    <option value="Fast Food">Fast Food</option>
+    <option value="Pizza">Pizza</option>
+    <option value="Bars">Bars</option>
+    <option value="Nightlife">Nightlife</option>
+    <option value="American">American</option>
+    </select></td>
+
+    <td><select id="dropdown3">
+    <option value="">None</option>
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    </select></td>
+
+  </tr>
+
+<script type="text/javascript">
+    var mytextbox1 = document.getElementById('mytext1');
+    var mydropdown1 = document.getElementById('dropdown1');
+    mydropdown1.onchange = function()
+    {mytextbox1.value = this.value;}
+</script>
+<script type="text/javascript">
+    var mytextbox2 = document.getElementById('mytext2');
+    var mydropdown2 = document.getElementById('dropdown2');
+    mydropdown2.onchange = function()
+    {mytextbox2.value = this.value;}
+</script>
+<script type="text/javascript">
+    var mytextbox3 = document.getElementById('mytext3');
+    var mydropdown3 = document.getElementById('dropdown3');
+    mydropdown3.onchange = function()
+    {mytextbox3.value = this.value;}
+</script>
+
+
+      <input type="submit">
+    </form>
+</body>
+</html>
+
+

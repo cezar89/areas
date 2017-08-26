@@ -1,0 +1,108 @@
+import os
+import re
+import random
+import hashlib
+import hmac
+from string import letters
+import logging
+import webapp2
+import jinja2
+import json
+import time
+from google.appengine.api import memcache
+from google.appengine.ext import db
+
+from pymongo import MongoClient
+
+
+
+template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
+                               autoescape = True)
+
+def render_str(template, **params):
+    t = jinja_env.get_template(template)
+    return t.render(params)
+
+
+
+
+#venue = 'Restaurants'
+#city = 'Tempe'
+#stars = 3.0
+def db_query(city,venue,stars):
+
+	client = MongoClient()
+	db = client.yelp
+
+	collection = db.businesses
+
+
+	full_list = []
+	latitude=''
+	longitude=''
+
+	logging.info('1 ')
+	for post in collection.find({"$and":[{"categories":{"$in":[venue]}},{"stars":{"$gte":stars}}, {"city":city}]},{"name":1,"latitude":1,"longitude":1,"_id":0,"city":1,"stars":1}):
+		full_list.append("new google.maps.LatLng(" + str(post['latitude']) + ", " + str(post['longitude']) + "),")
+		latiude = str(post['latitude'])
+		longitude = str(post['longitude'])
+
+	full_list[-1] = full_list[-1][0:-1]
+	logging.info('3 ')
+	client.close()
+
+	return [full_list, latiude, longitude]
+
+
+
+
+
+
+
+class BlogHandler(webapp2.RequestHandler):
+    def write(self, *a, **kw):
+        self.response.out.write(*a, **kw)
+
+    def render_str(self, template, **params):
+    	return render_str(template, **params)
+
+    def render(self, template, **kw):
+        self.write(self.render_str(template, **kw))
+
+class MainPage(BlogHandler):
+    def get(self):
+        self.render("MainPage.html")
+
+class AREAS(BlogHandler):
+    def get(self):
+        self.render('AREAS.html')
+
+    def post(self):
+
+        city = ''
+	venue_type = ''
+	stars = ''
+
+        city = self.request.get('text1')
+	venue = self.request.get('text2')
+	stars = self.request.get('text3')
+	stars_float=float(stars)
+
+#query here
+
+
+	query = db_query(city,venue,stars_float)
+	locations = query[0]
+	latitude = query[1]
+	longitude = query[2]
+
+        self.render('heatmap.html', latitude=latitude, longitude= longitude,locations=locations )
+    
+app = webapp2.WSGIApplication([('/', MainPage),('/AREAS', AREAS)],debug=True)
+
+
+
+
+
+
